@@ -1,0 +1,60 @@
+@import url('../../../assets/global.css');
+
+.blog-post-container{
+    margin:4rem 0;
+    position: relative;
+    left:50%;
+    transform: translate(-50%);
+    height: fit-content;
+    width: 600px;
+    height: fit-content;
+    display:flex;
+    flex-direction: column;    
+    gap: 2rem; 
+}
+.blog-post-image{
+    width:100%;
+    border-radius:7px;
+}
+
+.blog-post-title-section{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-post-title-section > h1{
+    font-family: var(--josefin-sans);
+}
+
+.edit , .trash{
+    cursor: pointer;
+}
+
+.post-ops{
+    display:flex;
+    gap: 1rem;
+    position: absolute;
+    right:0;
+}
+
+.blog-post-details{
+    display:flex;
+    justify-content: space-between;
+}
+
+.blog-post-details > p{
+    font-family: var(--josefin-sans);
+}
+
+.author{
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.blog-post-desc{
+    font-family: var(--lora);    
+    font-size: 21px;
+    line-height: 45px;
+}

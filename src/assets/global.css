@@ -1,0 +1,9 @@
+:root{
+    --josefin-sans:  "Josefin Sans", sans-serif;
+    --lora: "Lora", serif;
+    --varela-round: "Varela Round", sans-serif;
+
+    --button-padding: 5px;     
+    --button-font-color:#ffffff;   
+    --button-border-radius: 5px;
+}

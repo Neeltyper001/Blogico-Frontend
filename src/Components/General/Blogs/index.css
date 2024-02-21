@@ -1,0 +1,8 @@
+.blogs{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    place-items: center;  
+    flex:9;
+    gap:2rem;
+}

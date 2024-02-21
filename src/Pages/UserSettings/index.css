@@ -1,0 +1,90 @@
+@import url('../../assets/global.css');
+
+.user-settings{
+    position: relative;
+    display:flex;
+    flex-direction:column;    
+    height:500px;
+    justify-content: center;
+    align-items: center;
+    border:2px solid black;
+    gap:2rem;
+}
+
+.user-settings-title{
+    font-size:50px;
+    position:absolute;
+    left:50%;
+    transform:translate(-50%);
+}
+
+.user-update-form{
+    display:flex;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    gap:1rem;
+    box-shadow:0px 0px 5px 0px black;
+    padding: 15px;   
+    border-radius: 7px;  
+    width: 300px;   
+}
+
+.user-profile-label{
+    position: absolute;  
+    left:50%;
+    transform:translate(-50%)  ;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;    
+}
+
+.user-profile-pic,.user-profile-icon{
+    height:100%;
+    width: 100%;
+    object-fit: cover;
+    justify-self: center;    
+    border-radius: 50%; 
+}
+
+.preview-image{
+    visibility: hidden;
+}
+
+.user-update-from label{
+    font-size: 25px;
+    font-family: var(--josefins-sans);
+    font-weight: bolder;
+}
+
+.user-update-form input{
+    padding: 4px;
+    display:flex;
+    align-items: center;
+    justify-content: center;    
+    border-radius:5px;
+}
+
+.update{
+    background-color: #008080;
+    padding:var(--button-padding);
+    color:var(--button-font-color);
+    border-radius: var(--button-border-radius);
+    font-family: var(--varela-round);
+    cursor: pointer;
+}
+
+.delete{
+    position:absolute;
+    background-color: #FF0000;
+    padding:var(--button-padding);
+    color:var(--button-font-color);
+    border-radius: var(--button-border-radius);
+    font-family: var(--varela-round);
+    cursor: pointer;
+    bottom: 15%;
+    left:50%;
+    transform:translate(-50%);
+}

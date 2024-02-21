@@ -1,0 +1,15 @@
+@import url('../../../assets/global.css');
+
+.login{
+    background-color: #008080;
+    padding:var(--button-padding);
+    color:var(--button-font-color);
+    border-radius: var(--button-border-radius);
+}
+
+.register{
+    background-color: #ffa500;
+    padding:var(--button-padding);
+    color:var(--button-font-color);
+    border-radius: var(--button-border-radius);
+}

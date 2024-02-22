@@ -3,6 +3,7 @@ import './index.css'
 import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPenToSquare,faTrash} from '@fortawesome/free-solid-svg-icons'
+import { NavLink } from 'react-router-dom'
 import Db from '../../../db.json'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
@@ -36,7 +37,7 @@ const Blogpost = () => {
             </div>
         </div>
         <div className='blog-post-details'>
-            <p>Author:<span className='author'>{username}</span></p>
+            <p>Author:<NavLink to={`/?username=${username}`}><span className='author'>{username}</span></NavLink></p>
             <span>{Timeformat(createdAt)}</span>
         </div>
         <p className='blog-post-desc'>{desc}{`id: ${id}`}</p>

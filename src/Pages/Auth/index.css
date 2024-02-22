@@ -87,3 +87,10 @@
     font-family: var(--varela-round);
     cursor: pointer;
 }
+
+.error-span{
+    background-color: #ff0000;
+    border-radius:10px;    
+    color: #ffffff;
+    text-align: center;
+}

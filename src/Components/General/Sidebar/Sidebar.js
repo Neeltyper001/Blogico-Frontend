@@ -14,7 +14,7 @@ const Sidebar = () => {
         setCategories(res.data);
     }
     getCategories();
-  })
+  },[])
 
   const categoriesArr = categories.length > 0 ? categories.map((category,index)=>{
       return <NavLink to={`/?category=${category.name}`}><li key={index} className='sidebar-item'>{category.name}</li></NavLink>

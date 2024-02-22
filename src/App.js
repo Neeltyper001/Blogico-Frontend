@@ -4,17 +4,17 @@ import { useState } from "react";
 import { LoginContextProvider } from "./Contexts/Context.js";
 
 function App() {
-  const [isLoggedIn , setIsLoggedIn] = useState(false);
+  // const [isLoggedIn , setIsLoggedIn] = useState(false);
 
-  const userLogin = ()=>{
-    setIsLoggedIn(prevStatus =>  !prevStatus)
-  }
+  // const userLogin = ()=>{
+  //   setIsLoggedIn(prevStatus =>  !prevStatus)
+  // }
 
   return (
     <div className="App">
-      <UserLogin.Provider value={{isLoggedIn,userLogin}}>
+      <LoginContextProvider>
         <Router/>
-      </UserLogin.Provider>
+      </LoginContextProvider>
     </div>
   );
 }

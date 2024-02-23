@@ -1,22 +1,60 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
- 
+import { useState } from 'react'; 
+import axios from 'axios';
+import { LoginContext } from '../../Contexts/Context';
+
 const CreatePost = () => {
+  const [title, setTitle] = useState("")
+  const [desc, setDesc] = useState("")
+  const [file, setFile] = useState(null)
+  const {user} = useContext(LoginContext)
+
+  const handlePostSubmit = async (e)=>{
+    e.preventDefault();
+    const newPost = {
+      username: user.username,
+      title,
+      desc
+    };
+
+    if(file){
+      const data = new FormData();      
+      const filename = Date.now() + file.name;      
+      data.append("name",filename);
+      data.append("file",file);
+      newPost.photo = filename;      
+      try {        
+        await axios.post('http://localhost:5000/api/uploads/', data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    try {
+    const res = await axios.post('http://localhost:5000/api/posts',newPost);    
+      console.log(res.data)
+      window.location.replace("/blogposts/"+res.data._id)  
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className='create-post-container'>
-        <img className='new-post-image' src='https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bG9naW58ZW58MHx8MHx8fDA%3D' alt='new-post' />
-        <form className='create-post-form'>
+       {file &&  <img className='new-post-image' src={URL.createObjectURL(file)} alt='new-post' />}
+        <form className='create-post-form' onSubmit={handlePostSubmit}>
             <div className='create-post-form-head'>
                 <label htmlFor='fileInput'><FontAwesomeIcon className="plus-icon" icon={faPlus} /></label>
-                <input type='file' id='fileInput' hidden={true} />
-                <input type='text' placeholder='Title...' className='new-post-input' autoFocus={true} />
+                <input type='file' id='fileInput' hidden={true}  onChange={e=>setFile(e.target.files[0])}/>
+                <input type='text' placeholder='Title...' className='new-post-input' autoFocus={true} onChange={e=>setTitle(e.target.value)} />
             </div>
             <div className='create-post-form-tail'>
-                <textarea placeholder='Write your story...' type='text' className='new-post-input new-post-text'></textarea>
+                <textarea placeholder='Write your story...' type='text' className='new-post-input new-post-text' onChange={e=>setDesc(e.target.value)}></textarea>
             </div>
-            <button className='publish'>Publish</button>
+            <button className='publish' type="submit">Publish</button>
         </form>
     </div>
   )

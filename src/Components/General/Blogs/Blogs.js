@@ -7,8 +7,7 @@ import { useLocation } from 'react-router-dom'
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const {search} = useLocation();
-  console.log(search);
-  console.log(typeof(search))
+  const publicFolder = "http://localhost:5000/images/"
   useEffect(()=>{
 
     const getBlogs = async ()=>{
@@ -25,7 +24,7 @@ const Blogs = () => {
         id={blog._id}
         title = {blog.title}
         desc = {blog.desc}
-        image = {blog.image}
+        image = {publicFolder+blog.photo}
         time = {blog.createdAt}
         categories={blog.categories}
         />

@@ -8,6 +8,7 @@ import Login from '../Pages/Auth/Login.js'
 import Register from '../Pages/Auth/Register.js'
 import CreatePost from '../Pages/CreatePost/CreatePost.js'
 import UserSettings from '../Pages/UserSettings/UserSettings.js';
+import AboutPage from '../Pages/About/AboutPage.js'
 
 const Router = () => {
   return (
@@ -15,7 +16,7 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<Homepage/>} >  
           <Route index element={<Homelayout/>}   />     
-          <Route path='sidebar' element={<Sidebar/>}/> 
+          <Route path='about' element={<AboutPage/>}/> 
           <Route path='blogposts' element={<Homelayout/>} />
           <Route path='blogposts/:id' element={<Blogpost/>} />
           <Route path='register' element={<Register />} />

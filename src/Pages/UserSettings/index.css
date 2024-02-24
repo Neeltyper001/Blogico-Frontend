@@ -76,6 +76,15 @@
     cursor: pointer;
 }
 
+.update-message{
+    position:absolute;
+    color:#008080;
+    font-family: var(--varela-round);
+    left:50%;
+    transform:translate(-50%);
+    bottom:22%;
+}
+
 .delete{
     position:absolute;
     background-color: #FF0000;

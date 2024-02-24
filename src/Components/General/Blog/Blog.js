@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import Category from '../../UI/Category/Category.js'
 import { NavLink } from 'react-router-dom'
+import Timeformat from '../../Utils/Timeformat.js'
 
 const Blog = ({id , image, title, desc, time, categories }) => {    
 
@@ -21,7 +22,7 @@ const Blog = ({id , image, title, desc, time, categories }) => {
                 <p className='blog-desc'>{desc}</p>
             </div>
         <div className='blog-tail'>
-                <p className='blog-time'>Posted: <time >{time}</time></p>
+                <p className='blog-time'>Posted: <time >{Timeformat(time)}</time></p>
                 <div className='categories-container'>
                     {categoriesArr}
              </div>

@@ -1,0 +1,22 @@
+@import url('../../../assets/global.css');
+
+.about-user-component{
+    position: relative;
+}
+
+.about-image{
+    width:100%;
+    height:500px;
+}
+
+.about-user-span{
+    position: absolute;
+    font-family: var(--lora);
+    font-size: clamp(15px , 2vw , 25px);    
+    color:#ffffff;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-40%);
+    line-height:clamp(25px , 3vw, 50px);
+    width:75%;
+}

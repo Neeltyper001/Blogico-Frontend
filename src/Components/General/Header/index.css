@@ -1,3 +1,4 @@
+@import url('../../../assets/global.css');
 .header{
     position: relative;    
 }
@@ -15,6 +16,19 @@
     left:50%;
     transform:translate(-50%);
     font-size: 80px;
-    font-family: "Lora", serif;
+    font-family: --lora;
     color:#ffffff;
+}
+
+.blogico-sub-heading{
+    position: absolute;
+    display: block;
+    width:100%;
+    bottom: 50%;    
+    left:50%;
+    transform:translate(-50%);
+    font-size: clamp(30px, 3vw, 60px);
+    font-family: --varela-round;
+    color:#ffffff;
+    text-align: center;
 }

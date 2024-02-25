@@ -4,13 +4,12 @@ import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPenToSquare,faTrash} from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
-import Db from '../../../db.json'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import Timeformat from '../../Utils/Timeformat.js'
 import { useContext } from 'react'
 import { LoginContext } from '../../../Contexts/Context.js'
-import Button from '../../UI/Button/Button.js'
+
 
 const Blogpost = () => {
     const {id} = useParams();

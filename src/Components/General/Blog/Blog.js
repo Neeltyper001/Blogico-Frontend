@@ -14,7 +14,7 @@ const Blog = ({id , image, title, desc, time, categories }) => {
 
 
   return (
-   <NavLink to={`blogposts/${id}`}>
+   <NavLink to={`/blogposts/${id}`}>
         <div className='blog-container'>
             <div className='blog-body'>
                 <img  className='blog-image' src={image} alt={title} />

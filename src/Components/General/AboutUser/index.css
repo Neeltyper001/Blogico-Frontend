@@ -12,11 +12,11 @@
 .about-user-span{
     position: absolute;
     font-family: var(--lora);
-    font-size: clamp(15px , 2vw , 25px);    
+    font-size: clamp(12px , 3vw , 25px);    
     color:#ffffff;
     top:40%;
     left:50%;
     transform:translate(-50%,-40%);
-    line-height:clamp(25px , 3vw, 50px);
+    line-height:clamp(25px , 4vw, 50px);
     width:75%;
 }

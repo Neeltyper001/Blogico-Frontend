@@ -1,0 +1,47 @@
+.menu{
+    height: 100vh;
+    width: 35%;
+    box-sizing: border-box;
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 0%;
+    background-color: #161616;
+    opacity: 0.9;
+    padding: 2rem;
+    z-index: 4;
+}
+
+.menu-list{
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    width:100%;
+    justify-content: space-around;
+    align-items: center;
+    list-style:none;
+}
+
+.menu-list li{
+    color: #FFF7ED;    
+    font-family: 'Inter' , sans-serif;
+    background-color: #000000;
+    border-radius: 3px;
+    /* font-size: 25px; */
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+@media screen and (max-width: 568px){
+    .menu{
+        width: 100%;
+        opacity:0.95;    
+    }
+
+    .menu ul{
+        position: relative;        
+        left: 50%;
+        transform: translate(-50%);
+    }
+}

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;    
-    font-size: clamp(20px , 2vw, 25px);
+    font-size: clamp(15px , 2vw, 25px);
     margin: 2rem 0;
     font-family:var(--varela-round);
 }

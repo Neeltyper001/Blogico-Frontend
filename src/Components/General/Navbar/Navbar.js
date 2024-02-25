@@ -3,28 +3,63 @@ import './index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass,faUser} from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
-import UserLogin from '../../../Contexts/userLogin.js'
+import UserLogin from '../../../Contexts/MenuContext.js'
 import { useContext } from 'react'
 import { LoginContext } from '../../../Contexts/Context.js'
+import MenuContext from '../../../Contexts/MenuContext.js'
+import { useState,useEffect } from 'react'
+import Burger from '../../UI/Burger/Burger.js'
+import Menu from '../Menu/Menu.js'
 
 const Navbar = () => {
-  // const {isLoggedIn} = useContext(UserLogin);
+  
+  const [isMobile, setIsMobile] = useState(false);  
+  const [toggleMenu, setToggleMenu] = useState(false);
   const {user,dispatch} = useContext(LoginContext)
   const publicFolder = "http://localhost:5000/images/"
-  console.log(user);
+  // console.log(user);
 
-  const isLoggedIn = false;
+
+  const handleResize = ()=>{
+    setIsMobile(window.innerWidth <= 768);    
+  }
+
+  const handleToggleMenu = ()=>{
+    setToggleMenu(currToggle => { return !currToggle } );
+  }
+
+  useEffect(()=>{
+    handleResize();
+    window.addEventListener('resize' , handleResize);
+
+    return ()=>{
+      window.removeEventListener('resize' , handleResize);
+    }
+
+  },[]);
+  
 
   const handleLogOut = ()=>{
     dispatch({type:"LOGOUT"})    
   }
   return (    
         <nav className='nav-bar'>
+            {
+              toggleMenu && isMobile && 
+                <MenuContext.Provider value={handleToggleMenu}>
+                  <Menu />
+                </MenuContext.Provider>
+            }
             <ul className='nav-links'>
-               <NavLink to='/'><li>HOME</li></NavLink> 
-               <NavLink to='about'><li>ABOUT</li></NavLink> 
-               <NavLink to='#'><li>CONTACT</li></NavLink>
-               <NavLink to='write'><li>WRITE</li></NavLink>
+              {
+                isMobile ? <Burger eventReg={handleToggleMenu} /> :
+                <>
+                  <NavLink to='/'><li>HOME</li></NavLink> 
+                  <NavLink to='about'><li>ABOUT</li></NavLink> 
+                  <NavLink to='#'><li>CONTACT</li></NavLink>
+                  <NavLink to='write'><li>WRITE</li></NavLink>                
+                </>
+              }
             </ul>
 
             <div className='profiles'>
@@ -35,9 +70,11 @@ const Navbar = () => {
                         <NavLink to='settings'>{user.profilePic ? <img className='profile-pic' src={publicFolder + user.profilePic} alt={user.username} /> : <FontAwesomeIcon className='profile-pic-icon' icon={faUser} />}</NavLink>
                       </>
                       :
-                      <>
-                        <NavLink to='login'><span className='login'>LOGIN</span></NavLink>
-                        <NavLink to='register'><span className='register'>REGISTER</span></NavLink>
+                      
+                     !isMobile &&
+                      <>                             
+                          <NavLink to='login'><span className='login'>LOGIN</span></NavLink>
+                          <NavLink to='register'><span className='register'>REGISTER</span></NavLink>                                                        
                       </>
                 }
                 <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />

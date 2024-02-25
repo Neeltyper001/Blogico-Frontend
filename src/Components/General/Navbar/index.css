@@ -56,3 +56,7 @@
 .search-icon{
     cursor:pointer;
 }
+
+@media screen and (max-width:768px) {
+    
+}

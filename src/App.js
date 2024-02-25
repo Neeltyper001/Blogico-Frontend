@@ -1,14 +1,9 @@
 import Router from "./Routes/Router.js";
-import UserLogin from "./Contexts/userLogin.js";
-import { useState } from "react";
-import { LoginContextProvider } from "./Contexts/Context.js";
+import { useContext } from "react";
+import { LoginContext, LoginContextProvider } from "./Contexts/Context.js";
 
 function App() {
-  // const [isLoggedIn , setIsLoggedIn] = useState(false);
-
-  // const userLogin = ()=>{
-  //   setIsLoggedIn(prevStatus =>  !prevStatus)
-  // }
+  const {user} = useContext(LoginContext)
 
   return (
     <div className="App">

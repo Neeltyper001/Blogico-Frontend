@@ -6,3 +6,20 @@
     flex:9;
     gap:2rem;
 }
+
+@media  screen and (max-width:968px){
+    .blogs{
+        order:2;        
+    }
+
+    .blogs a{
+        width:70%;
+    }
+}
+
+@media  screen and (max-width:568px){
+    .blogs a{
+        width:90%;       
+    }
+
+}

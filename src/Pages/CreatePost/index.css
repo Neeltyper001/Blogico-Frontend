@@ -16,13 +16,13 @@
 
 .create-post-form-head{
         display:flex;        
-        margin-left:150px;
+        margin-left:10%;
         align-items: center;
 }
 
 .create-post-form-tail{
         display:flex;        
-        margin-left:150px;
+        margin-left:10%;
         align-items: center;
 }
 
@@ -43,7 +43,7 @@
     font-size:30px;
     border:none;
     padding:20px;
-    width:70vw;
+    width:70%;
 }
 
 .new-post-input:focus{
@@ -87,4 +87,18 @@
     line-height:50px;
     width:75%;
     text-align: center;
+}
+
+@media screen and (max-width:768px){
+    .create-post-form{
+        height:200px;
+    }
+    .publish{
+        height:fit-content;
+        width: fit-content;
+        position: absolute;
+        bottom:-25%;
+        left:10%;
+        top:100%;        
+    }
 }

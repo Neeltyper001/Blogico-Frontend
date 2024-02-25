@@ -1,7 +1,6 @@
 import React from 'react'
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import Homepage from '../Pages/Homepage/Homepage.js'
-import Sidebar from '../Components/General/Sidebar/Sidebar.js'
 import Blogpost from '../Components/General/Blogpost/Blogpost.js'
 import Homelayout from '../Layouts/Homelayout.js'
 import Login from '../Pages/Auth/Login.js'

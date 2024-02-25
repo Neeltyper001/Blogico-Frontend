@@ -57,8 +57,6 @@ const UserSettings = () => {
         }
       }
 
-
-
     
     const handleProfileImageChange = (e)=>{
         const file = e.target.files[0];

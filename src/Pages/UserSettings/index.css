@@ -12,7 +12,8 @@
 }
 
 .user-settings-title{
-    font-size:50px;
+    font-size:clamp(25px, 9vw, 50px);
+    top:17%;
     position:absolute;
     left:50%;
     transform:translate(-50%);
@@ -21,7 +22,7 @@
 .user-update-form{
     display:flex;
     position: absolute;
-    top:50%;
+    top:55%;
     left:50%;
     transform: translate(-50%, -50%);
     flex-direction: column;
@@ -93,7 +94,21 @@
     border-radius: var(--button-border-radius);
     font-family: var(--varela-round);
     cursor: pointer;
-    bottom: 15%;
+    bottom: 10%;
     left:50%;
     transform:translate(-50%);
+}
+
+@media screen and (max-width:568px){
+    .user-settings-title{
+        top:18%
+    }
+    .user-update-form{
+        width:60%;
+    }
+}
+@media screen and (max-width:368px){
+    .user-update-form{
+        width:70%;
+    }
 }

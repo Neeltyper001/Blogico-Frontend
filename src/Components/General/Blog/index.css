@@ -1,5 +1,5 @@
 .blog-container{
-    box-shadow: border-box;
+    box-sizing: border-box;
     padding:2rem;
     margin:2rem 0;
     display: flex;
@@ -61,4 +61,10 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical; */
+}
+
+@media screen and (max-width:968px){
+    .blog-container{
+        width:100%;
+    }
 }

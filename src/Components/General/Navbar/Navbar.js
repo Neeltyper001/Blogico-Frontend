@@ -46,7 +46,7 @@ const Navbar = () => {
         <nav className='nav-bar'>
             {
               toggleMenu && isMobile && 
-                <MenuContext.Provider value={handleToggleMenu}>
+                <MenuContext.Provider value={{handleToggleMenu,isMobile,handleLogOut}}>
                   <Menu />
                 </MenuContext.Provider>
             }
@@ -66,7 +66,7 @@ const Navbar = () => {
                 {
                     user ? 
                       <>
-                        <NavLink to='/'><span className='logout' onClick={handleLogOut}>LOGOUT</span></NavLink>
+                       { !isMobile && <NavLink to='/'><span className='logout' onClick={handleLogOut}>LOGOUT</span></NavLink>}
                         <NavLink to='settings'>{user.profilePic ? <img className='profile-pic' src={publicFolder + user.profilePic} alt={user.username} /> : <FontAwesomeIcon className='profile-pic-icon' icon={faUser} />}</NavLink>
                       </>
                       :

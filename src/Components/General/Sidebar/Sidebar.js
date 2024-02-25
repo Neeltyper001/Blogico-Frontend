@@ -3,8 +3,11 @@ import './index.css'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { LoginContext } from '../../../Contexts/Context.js'
+import Timeformat from '../../Utils/Timeformat.js'
 const Sidebar = () => {
-
+  const {user} = useContext(LoginContext);
   const [categories, setCategories] = useState([])
 
   useEffect(()=>{
@@ -25,7 +28,7 @@ const Sidebar = () => {
         <div className='sidebar-profile'>
             <span className='sidebar-title'>ABOUT ME</span>
             <img className='sidebar-profile-pic' src='https://images.unsplash.com/photo-1682685797527-63b4e495938f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8fA%3D%3D' alt='#' />
-            <p>In pariatur aliquip amet cupidatat ex nulla do nulla amet veniam irure veniam dolor minim. Incididunt eu sint ut officia.              
+            <p><span className='sidebar-profile-user'>{`${user.username}`} </span> { ` is been a user since `} <span className='sidebar-profile-joined'>{`${Timeformat(user.createdAt)}`}</span>
             </p>
         </div>
         

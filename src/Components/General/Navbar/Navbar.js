@@ -15,7 +15,7 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);  
   const [toggleMenu, setToggleMenu] = useState(false);
   const {user,dispatch} = useContext(LoginContext)
-  const publicFolder = "http://localhost:5000/images/"
+  const publicFolder = "https://blogico-backend.onrender.com/images/"
   // console.log(user);
 
 

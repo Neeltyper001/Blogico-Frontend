@@ -28,14 +28,14 @@ const CreatePost = () => {
       data.append("file",file);
       newPost.photo = filename;      
       try {        
-        await axios.post('http://localhost:5000/api/uploads/', data)
+        await axios.post('/uploads/', data)
       } catch (error) {
         console.log(error)
       }
     }
 
     try {
-    const res = await axios.post('http://localhost:5000/api/posts',newPost);    
+    const res = await axios.post('/posts',newPost);    
       console.log(res.data)
       window.location.replace(`/blogposts/${res.data._id}`)  
     } catch (error) {

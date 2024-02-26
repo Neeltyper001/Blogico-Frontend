@@ -7,11 +7,11 @@ import { useLocation } from 'react-router-dom'
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const {search} = useLocation();
-  const publicFolder = "http://localhost:5000/images/"
+  const publicFolder = "https://blogico-backend.onrender.com/images/"
   useEffect(()=>{
 
     const getBlogs = async ()=>{
-      const res = await axios.get('http://localhost:5000/api/posts'+search)
+      const res = await axios.get('/posts'+search)
       console.log(res.data)
       setBlogs(res.data);
     }

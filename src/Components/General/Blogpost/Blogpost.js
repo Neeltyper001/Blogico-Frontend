@@ -14,7 +14,7 @@ import { LoginContext } from '../../../Contexts/Context.js'
 const Blogpost = () => {
     const {id} = useParams();
     const [blogPost , setBlogPost] = useState({})
-    const publicFolder = "http://localhost:5000/images/"
+    const publicFolder = "https://blogico-backend.onrender.com/images/"
     const {user} = useContext(LoginContext);
 
     const [title , setTitle] = useState('')
@@ -24,7 +24,7 @@ const Blogpost = () => {
 
     useEffect(()=>{
         const getBlogPostData = async ()=>{
-            const res = await axios.get(`http://localhost:5000/api/posts/${id}`)
+            const res = await axios.get(`/posts/${id}`)
             console.log(res.data);
             setBlogPost(res.data);
             setTitle(res.data.title);
@@ -39,7 +39,7 @@ const Blogpost = () => {
       
     const handleDelete = async()=>{
         try {
-            const res = await axios.delete(`http://localhost:5000/api/posts/${id}`,{
+            const res = await axios.delete(`/posts/${id}`,{
                 data: {username: user.username}
             })
             console.log(res)
@@ -51,7 +51,7 @@ const Blogpost = () => {
 
     const handleUpdate = async()=>{
         try {
-            const res = await axios.put(`http://localhost:5000/api/posts/${id}`,{               
+            const res = await axios.put(`/posts/${id}`,{               
                     username: user.username,
                     title,
                     desc

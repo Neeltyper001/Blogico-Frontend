@@ -15,7 +15,7 @@ const UserSettings = () => {
     const [isSuccess, setSuccess] = useState(false);
 
     const {user,dispatch} = useContext(LoginContext)
-    const publicFolder = "http://localhost:5000/images/"
+    const publicFolder = "https://blogico-backend.onrender.com/images/"
     console.log(user)
 
     const handleUserUpdate = async (e)=>{
@@ -40,14 +40,14 @@ const UserSettings = () => {
           
           
           try {        
-            const res = await axios.post('http://localhost:5000/api/uploads/', data)
+            const res = await axios.post('/uploads/', data)
         } catch (error) {
             console.log(error)
         }
     }
     
     try {
-        const res = await axios.put('http://localhost:5000/api/users/'+user._id,updatedUser);    
+        const res = await axios.put('/users/'+user._id,updatedUser);    
         setSuccess(true)
         dispatch({type:"UPDATE_SUCCESS", payload: res.data})
         console.log(res.data)            

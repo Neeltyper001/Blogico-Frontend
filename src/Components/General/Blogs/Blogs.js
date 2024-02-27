@@ -4,15 +4,16 @@ import Blog from '../Blog/Blog.js'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
+import { BACKEND_URL } from '../../../assets/global.js'
+
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const {search} = useLocation();
-  const publicFolder = "https://blogico-backend.onrender.com/images/"
+  const publicFolder = `${BACKEND_URL}/images/`
   useEffect(()=>{
 
     const getBlogs = async ()=>{
-      const res = await axios.get('/posts'+search)
-      console.log(res.data)
+      const res = await axios.get(`${BACKEND_URL}/api/posts`+search)      
       setBlogs(res.data);
     }
     getBlogs();

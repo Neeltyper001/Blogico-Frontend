@@ -3,6 +3,7 @@ import './index.css'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
+import { BACKEND_URL } from '../../assets/global.js'
 
 const Register = () => {
   const [username , setUsername] = useState('');
@@ -14,7 +15,7 @@ const Register = () => {
       e.preventDefault();
       setError(false);
       try {        
-        const res = await axios.post('/auth/register',{
+        const res = await axios.post(`${BACKEND_URL}/api/auth/register`,{
           username,
           email,
           password

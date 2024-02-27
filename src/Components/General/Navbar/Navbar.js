@@ -9,13 +9,14 @@ import MenuContext from '../../../Contexts/MenuContext.js'
 import { useState,useEffect } from 'react'
 import Burger from '../../UI/Burger/Burger.js'
 import Menu from '../Menu/Menu.js'
+import { BACKEND_URL } from '../../../assets/global.js'
 
 const Navbar = () => {
   
   const [isMobile, setIsMobile] = useState(false);  
   const [toggleMenu, setToggleMenu] = useState(false);
   const {user,dispatch} = useContext(LoginContext)
-  const publicFolder = "https://blogico-backend.onrender.com/images/"
+  const publicFolder = `${BACKEND_URL}/images/`
   // console.log(user);
 
 

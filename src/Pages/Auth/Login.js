@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useRef,useContext,useState } from 'react'
 import { LoginContext } from '../../Contexts/Context.js'
 import axios from 'axios'
+import { BACKEND_URL } from '../../assets/global.js'
 
 const Login = () => {
   const usernameRef = useRef();
@@ -16,7 +17,7 @@ const handleLoginSubmit = async(e)=>{
       setLoginError(false)
       dispatch({type:"LOGIN_START"});      
       try {
-        const res = await axios.post('/auth/login',{
+        const res = await axios.post(`${BACKEND_URL}/api/auth/login`,{
           username: usernameRef.current.value,
           password: passwordRef.current.value
         });

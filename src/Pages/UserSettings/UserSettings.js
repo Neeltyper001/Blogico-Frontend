@@ -4,6 +4,7 @@ import { useState,useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { LoginContext } from '../../Contexts/Context'
+import { BACKEND_URL } from '../../assets/global.js'
 import axios from 'axios'
 
 const UserSettings = () => {
@@ -15,7 +16,7 @@ const UserSettings = () => {
     const [isSuccess, setSuccess] = useState(false);
 
     const {user,dispatch} = useContext(LoginContext)
-    const publicFolder = "https://blogico-backend.onrender.com/images/"
+    const publicFolder = `${BACKEND_URL}/images/`
     console.log(user)
 
     const handleUserUpdate = async (e)=>{
@@ -40,14 +41,14 @@ const UserSettings = () => {
           
           
           try {        
-            const res = await axios.post('/uploads/', data)
+            const res = await axios.post(`${BACKEND_URL}/api/uploads/`, data)
         } catch (error) {
             console.log(error)
         }
     }
     
     try {
-        const res = await axios.put('/users/'+user._id,updatedUser);    
+        const res = await axios.put(`${BACKEND_URL}/api/users/`+user._id,updatedUser);    
         setSuccess(true)
         dispatch({type:"UPDATE_SUCCESS", payload: res.data})
         console.log(res.data)            

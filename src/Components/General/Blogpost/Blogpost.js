@@ -9,12 +9,12 @@ import axios from 'axios'
 import Timeformat from '../../Utils/Timeformat.js'
 import { useContext } from 'react'
 import { LoginContext } from '../../../Contexts/Context.js'
-
+import { BACKEND_URL } from '../../../assets/global.js'
 
 const Blogpost = () => {
     const {id} = useParams();
     const [blogPost , setBlogPost] = useState({})
-    const publicFolder = "https://blogico-backend.onrender.com/images/"
+    const publicFolder = `${BACKEND_URL}/images/`
     const {user} = useContext(LoginContext);
 
     const [title , setTitle] = useState('')
@@ -24,7 +24,7 @@ const Blogpost = () => {
 
     useEffect(()=>{
         const getBlogPostData = async ()=>{
-            const res = await axios.get(`/posts/${id}`)
+            const res = await axios.get(`${BACKEND_URL}/api/posts/${id}`)
             console.log(res.data);
             setBlogPost(res.data);
             setTitle(res.data.title);
@@ -39,7 +39,7 @@ const Blogpost = () => {
       
     const handleDelete = async()=>{
         try {
-            const res = await axios.delete(`/posts/${id}`,{
+            const res = await axios.delete(`${BACKEND_URL}/api/posts/${id}`,{
                 data: {username: user.username}
             })
             console.log(res)
@@ -51,7 +51,7 @@ const Blogpost = () => {
 
     const handleUpdate = async()=>{
         try {
-            const res = await axios.put(`/posts/${id}`,{               
+            const res = await axios.put(`${BACKEND_URL}/api/posts/${id}`,{               
                     username: user.username,
                     title,
                     desc

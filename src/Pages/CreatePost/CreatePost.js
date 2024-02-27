@@ -6,6 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { LoginContext } from '../../Contexts/Context';
 import Footer from '../../Components/General/Footer/Footer.js';
+import { BACKEND_URL } from '../../assets/global.js';
 
 const CreatePost = () => {
   const [title, setTitle] = useState("")
@@ -28,14 +29,14 @@ const CreatePost = () => {
       data.append("file",file);
       newPost.photo = filename;      
       try {        
-        await axios.post('/uploads/', data)
+        await axios.post(`${BACKEND_URL}/api/uploads/`, data)
       } catch (error) {
         console.log(error)
       }
     }
 
     try {
-    const res = await axios.post('/posts',newPost);    
+    const res = await axios.post(`${BACKEND_URL}/api/posts`,newPost);    
       console.log(res.data)
       window.location.replace(`/blogposts/${res.data._id}`)  
     } catch (error) {

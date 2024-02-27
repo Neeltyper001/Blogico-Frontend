@@ -6,14 +6,15 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { LoginContext } from '../../../Contexts/Context.js'
 import Timeformat from '../../Utils/Timeformat.js'
+import { BACKEND_URL } from '../../../assets/global.js'
+
 const Sidebar = () => {
   const {user} = useContext(LoginContext);
   const [categories, setCategories] = useState([])
 
   useEffect(()=>{
     const getCategories = async() =>{
-        const res = await axios.get('/categories')
-        console.log(res.data);
+        const res = await axios.get(`${BACKEND_URL}/api/categories`)        
         setCategories(res.data);
     }
     getCategories();

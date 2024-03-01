@@ -9,7 +9,7 @@ import { BACKEND_URL } from '../../../assets/global.js'
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const {search} = useLocation();
-  const publicFolder = `${BACKEND_URL}/images/`
+  
   useEffect(()=>{
 
     const getBlogs = async ()=>{
@@ -25,7 +25,7 @@ const Blogs = () => {
         id={blog._id}
         title = {blog.title}
         desc = {blog.desc}
-        image = {publicFolder+blog.photo}
+        image = {blog.photo}
         time = {blog.createdAt}
         categories={blog.categories}
         />

@@ -15,8 +15,7 @@ const Navbar = () => {
   
   const [isMobile, setIsMobile] = useState(false);  
   const [toggleMenu, setToggleMenu] = useState(false);
-  const {user,dispatch} = useContext(LoginContext)
-  const publicFolder = `${BACKEND_URL}/images/`
+  const {user,dispatch} = useContext(LoginContext)  
   // console.log(user);
 
 
@@ -67,7 +66,7 @@ const Navbar = () => {
                     user ? 
                       <>
                        { !isMobile && <NavLink to='/'><span className='logout' onClick={handleLogOut}>LOGOUT</span></NavLink>}
-                        <NavLink to='settings'>{user.profilePic ? <img className='profile-pic' src={publicFolder + user.profilePic} alt={user.username} /> : <FontAwesomeIcon className='profile-pic-icon' icon={faUser} />}</NavLink>
+                        <NavLink to='settings'>{user.profilePic ? <img className='profile-pic' src={user.profilePic} alt={user.username} /> : <FontAwesomeIcon className='profile-pic-icon' icon={faUser} />}</NavLink>
                       </>
                       :
                       

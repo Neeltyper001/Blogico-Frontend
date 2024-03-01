@@ -67,7 +67,7 @@ const Blogpost = () => {
 
   return (
     <div className='blog-post-container'>
-        <img className='blog-post-image' src={publicFolder+photo} alt={title} />
+        <img className='blog-post-image' src={photo} alt={title} />
         <div className='blog-post-title-section'>
 
             {updateMode ? <input className='blog-post-title-input' autoFocus={true} type='text' value={title}  onChange={(e)=>{setTitle(e.target.value)}} /> : <h1 className='blog-post-title'>{title}</h1>}

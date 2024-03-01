@@ -26,10 +26,13 @@ const CreatePost = () => {
       const data = new FormData();      
       const filename = Date.now() + file.name;      
       data.append("name",filename);
-      data.append("file",file);
-      newPost.photo = filename;      
+      data.append("file",file);  
+      data.append("username",user.username)  
+      data.append("upload_asset_type","posts")
       try {        
-        await axios.post(`${BACKEND_URL}/api/uploads/`, data)
+       const res =  await axios.post(`${BACKEND_URL}/api/uploads/`, data);
+       console.log(res)
+       newPost.photo = res.data;
       } catch (error) {
         console.log(error)
       }

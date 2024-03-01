@@ -36,12 +36,12 @@ const UserSettings = () => {
           const filename = Date.now() + selectedImageFile.name;      
           data.append("name",filename);
           data.append("file",selectedImageFile);
-          console.log(filename)
-          updatedUser.profilePic = filename;
-          
-          
+          data.append("username",user.username)  
+          data.append("upload_asset_type","profile")
+                                        
           try {        
             const res = await axios.post(`${BACKEND_URL}/api/uploads/`, data)
+            updatedUser.profilePic = res.data;
         } catch (error) {
             console.log(error)
         }

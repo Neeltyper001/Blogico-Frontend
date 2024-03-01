@@ -28,7 +28,7 @@ const Sidebar = () => {
     <div className='sidebar'>
         <div className='sidebar-profile'>
             <span className='sidebar-title'>ABOUT ME</span>
-            <img className='sidebar-profile-pic' src='https://images.unsplash.com/photo-1682685797527-63b4e495938f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8fA%3D%3D' alt='#' />
+            <img className='sidebar-profile-pic' src={user.profilePic} alt='#' />
             <p><span className='sidebar-profile-user'>{`${user.username}`} </span> { ` is been a user since `} <span className='sidebar-profile-joined'>{`${Timeformat(user.createdAt)}`}</span>
             </p>
         </div>

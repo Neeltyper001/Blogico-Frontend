@@ -50,8 +50,7 @@ const UserSettings = () => {
     try {
         const res = await axios.put(`${BACKEND_URL}/api/users/`+user._id,updatedUser);    
         setSuccess(true)
-        dispatch({type:"UPDATE_SUCCESS", payload: res.data})
-        console.log(res.data)            
+        dispatch({type:"UPDATE_SUCCESS", payload: res.data})                  
     } catch (error) {
         console.log(error)
         dispatch({type:"UPDATE_FAILURE"})

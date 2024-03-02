@@ -21,7 +21,7 @@ const handleLoginSubmit = async(e)=>{
           username: usernameRef.current.value,
           password: passwordRef.current.value
         });
-        console.log(res.data)
+
         dispatch({type:"LOGIN_SUCCESS", payload:res.data});
         window.location.replace('/blogposts')
       } catch (error) {
@@ -29,8 +29,7 @@ const handleLoginSubmit = async(e)=>{
         setLoginError(true);
       }
 }
-
-  console.log(isFetching);
+  
 
   return (
     <div className='form-container'>

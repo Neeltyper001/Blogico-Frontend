@@ -30,8 +30,7 @@ const CreatePost = () => {
       data.append("username",user.username)  
       data.append("upload_asset_type","posts")
       try {        
-       const res =  await axios.post(`${BACKEND_URL}/api/uploads/`, data);
-       console.log(res)
+       const res =  await axios.post(`${BACKEND_URL}/api/uploads/`, data);       
        newPost.photo = res.data;
       } catch (error) {
         console.log(error)
@@ -39,8 +38,7 @@ const CreatePost = () => {
     }
 
     try {
-    const res = await axios.post(`${BACKEND_URL}/api/posts`,newPost);    
-      console.log(res.data)
+    const res = await axios.post(`${BACKEND_URL}/api/posts`,newPost);          
       window.location.replace(`/blogposts/${res.data._id}`)  
     } catch (error) {
       console.log(error)

@@ -20,8 +20,7 @@ const Register = () => {
           email,
           password
         });
-  
-        console.log(res);
+          
         res.data && window.location.replace('/login');
       } catch (error) {
         console.log(error.response.data.message)

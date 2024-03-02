@@ -57,7 +57,7 @@ const Blogpost = () => {
                     desc
                 
             })
-            console.log(res)
+
             window.location.reload()
         } catch (error) {
             

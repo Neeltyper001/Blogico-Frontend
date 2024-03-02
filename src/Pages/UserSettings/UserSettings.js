@@ -80,7 +80,7 @@ const UserSettings = () => {
                 {selectedImage} alt="Selected" /> </label>: 
                         
                 user.profilePic ? <label className='user-profile-label' htmlFor='imageUpload'> <img className='user-profile-pic' src=
-                {publicFolder+user.profilePic} alt="Selected" /> </label> : 
+                {user.profilePic} alt="Selected" /> </label> : 
             
             <label className='user-profile-label' htmlFor='imageUpload'><FontAwesomeIcon className='user-profile-icon' icon={faUser} /></label>
             }

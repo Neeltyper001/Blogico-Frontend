@@ -10,6 +10,7 @@ import Timeformat from '../../Utils/Timeformat.js'
 import { useContext } from 'react'
 import { LoginContext } from '../../../Contexts/Context.js'
 import { BACKEND_URL } from '../../../assets/global.js'
+import Loading from '../../UI/Loading/Loading.js'
 
 const Blogpost = () => {
     const {id} = useParams();
@@ -20,7 +21,7 @@ const Blogpost = () => {
     const [title , setTitle] = useState('')
     const [desc , setDesc] = useState('')
     const [updateMode , setUpdateMode] = useState(false)
-
+    const [isLoading , setIsLoading] = useState(false);
 
     useEffect(()=>{
         const getBlogPostData = async ()=>{
@@ -38,18 +39,22 @@ const Blogpost = () => {
     const {photo,createdAt,username} = blogPost;      
       
     const handleDelete = async()=>{
+            setIsLoading(true);
         try {
             const res = await axios.delete(`${BACKEND_URL}/api/posts/${id}`,{
                 data: {username: user.username}
             })
             console.log(res)
+            setIsLoading(false);
             setUpdateMode(false)
+            window.location.replace('/blogposts')
         } catch (error) {
-            
+            setIsLoading(false);
         }
     }
 
     const handleUpdate = async()=>{
+            setIsLoading(true);
         try {
             const res = await axios.put(`${BACKEND_URL}/api/posts/${id}`,{               
                     username: user.username,
@@ -57,15 +62,16 @@ const Blogpost = () => {
                     desc
                 
             })
-
+            setIsLoading(false);
             window.location.reload()
         } catch (error) {
-            
+            setIsLoading(false);
         }
     }
     
 
   return (
+    <>
     <div className='blog-post-container'>
         <img className='blog-post-image' src={photo} alt={title} />
         <div className='blog-post-title-section'>
@@ -74,7 +80,7 @@ const Blogpost = () => {
             
             {username === user?.username 
                         && 
-                <div className='post-ops'>
+                        <div className='post-ops'>
                     <FontAwesomeIcon className='edit' icon={faPenToSquare} onClick={()=>{setUpdateMode(true)}}/>
                     <FontAwesomeIcon className='trash' icon={faTrash} onClick={handleDelete} />
                 </div>
@@ -83,10 +89,12 @@ const Blogpost = () => {
         <div className='blog-post-details'>
             <p>Author:<NavLink to={`/?username=${username}`}><span className='author'>{username}</span></NavLink></p>
             <span>{Timeformat(createdAt)}</span>
+            {isLoading && <Loading />}
         </div>
         {updateMode ? <textarea value={desc} onChange={(e)=>{setDesc(e.target.value)}} className='blog-post-desc-input' /> : <p className='blog-post-desc'>{desc}</p> }
         {updateMode && <button className='blog-post-update-button' onClick={handleUpdate}>Update</button>}
     </div>
+    </>
   )
 }
 

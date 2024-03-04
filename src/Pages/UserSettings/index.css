@@ -99,6 +99,10 @@
     transform:translate(-50%);
 }
 
+.loader-parent{
+    margin-top:60%;
+}
+
 @media screen and (max-width:568px){
     .user-settings-title{
         top:18%

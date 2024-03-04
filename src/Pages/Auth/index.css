@@ -107,6 +107,11 @@
     text-align: center;
 }
 
+.loader-parent{
+    margin-top:60%;
+    opacity:0.6;
+}
+
 @media screen and  (max-width:360px){
     .login-form,.register-form{
         width:70%;

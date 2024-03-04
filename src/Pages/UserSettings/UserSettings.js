@@ -6,6 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { LoginContext } from '../../Contexts/Context'
 import { BACKEND_URL } from '../../assets/global.js'
 import axios from 'axios'
+import Loading from '../../Components/UI/Loading/Loading.js'
 
 const UserSettings = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -14,6 +15,7 @@ const UserSettings = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [isSuccess, setSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {user,dispatch} = useContext(LoginContext)
     const publicFolder = `${BACKEND_URL}/images/`
@@ -21,6 +23,7 @@ const UserSettings = () => {
 
     const handleUserUpdate = async (e)=>{
         e.preventDefault();
+        setIsLoading(true);
         setSuccess(false);
         dispatch({type:"UPDATE_START"})
         const updatedUser = {
@@ -50,9 +53,11 @@ const UserSettings = () => {
     try {
         const res = await axios.put(`${BACKEND_URL}/api/users/`+user._id,updatedUser);    
         setSuccess(true)
+        setIsLoading(false);
         dispatch({type:"UPDATE_SUCCESS", payload: res.data})                  
     } catch (error) {
         console.log(error)
+        setIsLoading(false);
         dispatch({type:"UPDATE_FAILURE"})
         }
       }
@@ -99,6 +104,7 @@ const UserSettings = () => {
             <label htmlFor='password'>New password</label>
             <input type='password'  onChange={e=>setPassword(e.target.value)}/>
             <button className='update' type='submit'>Update Account</button>
+            {isLoading && <Loading />}
         </form>
         {isSuccess && <span className='update-message'> User profile updated successfully! </span>}
         <button className='delete'>Delete Account</button>

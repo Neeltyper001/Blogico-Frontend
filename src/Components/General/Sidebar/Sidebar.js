@@ -3,6 +3,8 @@ import './index.css'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { LoginContext } from '../../../Contexts/Context.js'
 import Timeformat from '../../Utils/Timeformat.js'
@@ -28,7 +30,7 @@ const Sidebar = () => {
     <div className='sidebar'>
         <div className='sidebar-profile'>
             <span className='sidebar-title'>ABOUT ME</span>
-            <img className='sidebar-profile-pic' src={user.profilePic} alt='#' />
+            {user.profilePic ? <img className='sidebar-profile-pic' src={user.profilePic} alt={user.username} /> : <FontAwesomeIcon className='profile-pic-icon' icon={faUser} />}            
             <p><span className='sidebar-profile-user'>{`${user.username}`} </span> { ` is been a user since `} <span className='sidebar-profile-joined'>{`${Timeformat(user.createdAt)}`}</span>
             </p>
         </div>

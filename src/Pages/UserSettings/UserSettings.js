@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { LoginContext } from '../../Contexts/Context'
 import { BACKEND_URL } from '../../assets/global.js'
 import axios from 'axios'
-import Loading from '../../Components/UI/Loading/Loading.js'
+import LoadingContext from '../../Contexts/LoadingContext.js'
 
 const UserSettings = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -14,16 +14,17 @@ const UserSettings = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [isSuccess, setSuccess] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isSuccess, setSuccess] = useState(false);    
 
     const {user,dispatch} = useContext(LoginContext)
+    const {handleLoading} = useContext(LoadingContext)
+
     const publicFolder = `${BACKEND_URL}/images/`
-    console.log(user)
+    // console.log(user)
 
     const handleUserUpdate = async (e)=>{
         e.preventDefault();
-        setIsLoading(true);
+        handleLoading();
         setSuccess(false);
         dispatch({type:"UPDATE_START"})
         const updatedUser = {
@@ -35,7 +36,7 @@ const UserSettings = () => {
     
         if(selectedImage){
           const data = new FormData();
-          console.log(selectedImageFile)      
+        //   console.log(selectedImageFile)      
           const filename = Date.now() + selectedImageFile.name;      
           data.append("name",filename);
           data.append("file",selectedImageFile);
@@ -53,11 +54,11 @@ const UserSettings = () => {
     try {
         const res = await axios.put(`${BACKEND_URL}/api/users/`+user._id,updatedUser);    
         setSuccess(true)
-        setIsLoading(false);
+        handleLoading();
         dispatch({type:"UPDATE_SUCCESS", payload: res.data})                  
     } catch (error) {
         console.log(error)
-        setIsLoading(false);
+        handleLoading();
         dispatch({type:"UPDATE_FAILURE"})
         }
       }
@@ -103,8 +104,7 @@ const UserSettings = () => {
             <input type='email' placeholder={user.email} onChange={e=>setEmail(e.target.value)}/>
             <label htmlFor='password'>New password</label>
             <input type='password'  onChange={e=>setPassword(e.target.value)}/>
-            <button className='update' type='submit'>Update Account</button>
-            {isLoading && <Loading />}
+            <button className='update' type='submit'>Update Account</button>            
         </form>
         {isSuccess && <span className='update-message'> User profile updated successfully! </span>}
         <button className='delete'>Delete Account</button>

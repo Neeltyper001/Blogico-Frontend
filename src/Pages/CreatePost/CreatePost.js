@@ -34,7 +34,7 @@ const CreatePost = () => {
       data.append("upload_asset_type","posts")
       try {        
        const res =  await axios.post(`${BACKEND_URL}/api/uploads/`, data);  
-       console.log(res.data);
+      //  console.log(res.data);
        newPost.photo = res.data;
       } catch (error) {
         console.log(error)

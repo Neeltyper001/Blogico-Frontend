@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);  
   const [toggleMenu, setToggleMenu] = useState(false);
   const {user,dispatch} = useContext(LoginContext)  
-  console.log(user);
+  // console.log(user);
 
 
   const handleResize = ()=>{

@@ -2,6 +2,7 @@
     padding-top: 50px;
 }
 
+
 .new-post-image{
     height:250px;
     width:70vw;
@@ -20,7 +21,7 @@
         align-items: center;
 }
 
-.create-post-form-tail{
+.create-post-form-tail{        
         display:flex;        
         margin-left:10%;
         align-items: center;
@@ -88,6 +89,8 @@
     width:75%;
     text-align: center;
 }
+
+
 
 @media screen and (max-width:768px){
     .create-post-form{

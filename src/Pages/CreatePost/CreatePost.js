@@ -7,18 +7,18 @@ import axios from 'axios';
 import { LoginContext } from '../../Contexts/Context';
 import Footer from '../../Components/General/Footer/Footer.js';
 import { BACKEND_URL } from '../../assets/global.js';
-import Loading from '../../Components/UI/Loading/Loading.js';
+import LoadingContext from '../../Contexts/LoadingContext.js';
 
 const CreatePost = () => {
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
   const [file, setFile] = useState(null)
   const {user} = useContext(LoginContext)
-  const [isLoading, setIsLoading] = useState(false);
+  const {handleLoading} = useContext(LoadingContext);
 
   const handlePostSubmit = async (e)=>{
     e.preventDefault();
-    setIsLoading(true);
+    handleLoading();    
     const newPost = {
       username: user.username,
       title,
@@ -33,7 +33,8 @@ const CreatePost = () => {
       data.append("username",user.username)  
       data.append("upload_asset_type","posts")
       try {        
-       const res =  await axios.post(`${BACKEND_URL}/api/uploads/`, data);       
+       const res =  await axios.post(`${BACKEND_URL}/api/uploads/`, data);  
+       console.log(res.data);
        newPost.photo = res.data;
       } catch (error) {
         console.log(error)
@@ -42,7 +43,7 @@ const CreatePost = () => {
 
     try {
     const res = await axios.post(`${BACKEND_URL}/api/posts`,newPost);    
-      setIsLoading(false);
+      handleLoading();
       window.location.replace(`/blogposts/${res.data._id}`)  
     } catch (error) {
       
@@ -55,10 +56,12 @@ const CreatePost = () => {
     {
       user ? 
       <div className='create-post-container'>
-         {file &&  <img className='new-post-image' src={URL.createObjectURL(file)} alt='new-post' />}
+         {file &&  <div className='new-post-image-container'>
+          <img className='new-post-image' src={URL.createObjectURL(file)} alt='new-post' /></div>
+          }
           <form className='create-post-form' onSubmit={handlePostSubmit}>
+                  {/* {isLoading && <Loading />} */}
               <div className='create-post-form-head'>
-                  {isLoading && <Loading />}
                   <label htmlFor='fileInput'><FontAwesomeIcon className="plus-icon" icon={faPlus} /></label>
                   <input type='file' id='fileInput' hidden={true}  onChange={e=>setFile(e.target.files[0])}/>
                   <input type='text' placeholder='Title...' className='new-post-input' autoFocus={true} onChange={e=>setTitle(e.target.value)} />

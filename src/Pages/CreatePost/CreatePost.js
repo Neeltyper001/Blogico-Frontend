@@ -46,7 +46,7 @@ const CreatePost = () => {
       handleLoading();
       window.location.replace(`/blogposts/${res.data._id}`)  
     } catch (error) {
-      
+      handleLoading();
       console.log(error)
     }
   }

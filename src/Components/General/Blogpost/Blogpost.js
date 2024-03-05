@@ -21,17 +21,25 @@ const Blogpost = () => {
     const [title , setTitle] = useState('')
     const [desc , setDesc] = useState('')
     const [updateMode , setUpdateMode] = useState(false)
-    const [isLoading , setIsLoading] = useState(false);
+    // const [isLoading , setIsLoading] = useState(false);
 
     const {handleLoading} = useContext(LoadingContext);
 
     useEffect(()=>{
         const getBlogPostData = async ()=>{
-            const res = await axios.get(`${BACKEND_URL}/api/posts/${id}`)
-            console.log(res.data);
-            setBlogPost(res.data);
-            setTitle(res.data.title);
-            setDesc(res.data.desc);
+            handleLoading();
+            try {
+                const res = await axios.get(`${BACKEND_URL}/api/posts/${id}`)
+                // console.log(res.data);
+                setBlogPost(res.data);
+                setTitle(res.data.title);
+                setDesc(res.data.desc);
+                handleLoading();
+                
+            } catch (error) {
+                console.log(error);
+                handleLoading();
+            }
         }
 
         getBlogPostData();

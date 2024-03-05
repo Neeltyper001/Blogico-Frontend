@@ -1,20 +1,30 @@
 import React from 'react'
 import './index.css'
 import Blog from '../Blog/Blog.js'
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useContext } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { BACKEND_URL } from '../../../assets/global.js'
+import LoadingContext from '../../../Contexts/LoadingContext.js'
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const {search} = useLocation();
-  
-  useEffect(()=>{
+  const {handleLoading} = useContext(LoadingContext);
 
+  useEffect(()=>{
+    
     const getBlogs = async ()=>{
-      const res = await axios.get(`${BACKEND_URL}/api/posts`+search)      
-      setBlogs(res.data);
+      handleLoading();
+      try {        
+        const res = await axios.get(`${BACKEND_URL}/api/posts`+search)      
+        setBlogs(res.data);
+        handleLoading();
+      } catch (error) {
+        console.log(error)
+        handleLoading();
+      }
+
     }
     getBlogs();
   },[search])

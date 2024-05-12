@@ -75,6 +75,24 @@ const UserSettings = () => {
         }
 
     }
+
+    const handleDeleteUserAccount = async ()=>{
+      try {
+        const deletedUser = {
+          username: user.username,
+          userId: user._id
+        };
+        console.log(deletedUser)
+        
+        const res = await axios.delete(`${BACKEND_URL}/api/users/`+user._id, {data: deletedUser});
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log("delete user account");
+    }
+
+
   return (
     <div className='User-settings'>
         <label className='user-settings-title'>User settings</label>
@@ -107,7 +125,7 @@ const UserSettings = () => {
             <button className='update' type='submit'>Update Account</button>            
         </form>
         {isSuccess && <span className='update-message'> User profile updated successfully! </span>}
-        <button className='delete'>Delete Account</button>
+        <button className='delete' onClick={handleDeleteUserAccount}>Delete Account</button>
     </div>
   )
 }

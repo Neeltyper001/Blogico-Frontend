@@ -11,6 +11,7 @@ import Burger from '../../UI/Burger/Burger.js'
 import Menu from '../Menu/Menu.js'
 import { BACKEND_URL } from '../../../assets/global.js'
 
+
 const Navbar = () => {
   
   const [isMobile, setIsMobile] = useState(false);  
@@ -38,9 +39,13 @@ const Navbar = () => {
   },[]);
   
 
-  const handleLogOut = ()=>{
+  const  handleLogOut = ()=>{    
     dispatch({type:"LOGOUT"})    
   }
+
+  
+
+
   return (    
         <nav className='nav-bar'>
             {

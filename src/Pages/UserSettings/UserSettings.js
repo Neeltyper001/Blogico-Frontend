@@ -7,6 +7,7 @@ import { LoginContext } from '../../Contexts/Context'
 import { BACKEND_URL } from '../../assets/global.js'
 import axios from 'axios'
 import LoadingContext from '../../Contexts/LoadingContext.js'
+import { handleLogOut } from '../../Components/General/Navbar/Navbar.js'
 
 const UserSettings = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -52,6 +53,7 @@ const UserSettings = () => {
     }
     
     try {
+        console.log(updatedUser);
         const res = await axios.put(`${BACKEND_URL}/api/users/`+user._id,updatedUser);    
         setSuccess(true)
         handleLoading();
@@ -77,19 +79,23 @@ const UserSettings = () => {
     }
 
     const handleDeleteUserAccount = async ()=>{
-      try {
-        const deletedUser = {
-          username: user.username,
-          userId: user._id
-        };
-        console.log(deletedUser)
+
+      const response = window.confirm("By this your profile, your post all will be removed permanently. Are you sure to proceed? ")
         
-        const res = await axios.delete(`${BACKEND_URL}/api/users/`+user._id, {data: deletedUser});
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-      console.log("delete user account");
+        if(response){
+          try {
+            const deletedUser = {
+              username: user.username,
+              userId: user._id
+            };
+            console.log(deletedUser)
+            const res = await axios.delete(`${BACKEND_URL}/api/users/`+user._id, {data: deletedUser});                       
+            localStorage.setItem('user',null);            
+            window.location.replace('/login');
+          } catch (error) {
+            console.log(error);
+          }      
+        }
     }
 
 

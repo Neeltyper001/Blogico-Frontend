@@ -59,7 +59,8 @@ const Blogpost = () => {
             setUpdateMode(false)
             window.location.replace('/blogposts')
         } catch (error) {
-            handleLoading()(false);
+            
+            handleLoading(false);
         }
     }
 

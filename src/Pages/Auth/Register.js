@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import { useState,useContext } from 'react'
 import axios from 'axios'
 import { BACKEND_URL } from '../../assets/global.js'
-import Loading from '../../Components/UI/Loading/Loading.js'
 import LoadingContext from '../../Contexts/LoadingContext.js'
 
 const Register = () => {
